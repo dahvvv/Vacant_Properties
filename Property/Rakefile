@@ -1,0 +1,89 @@
+require 'bundler'
+Bundler.require
+require 'sinatra/activerecord/rake'
+require_relative 'connection'
+begin
+  require 'CSV'
+rescue
+  require 'csv'
+end
+# ROOT_DIR = Dir.pwd
+# Dir[ROOT_DIR + "/models/*.rb"].each { |file| require file }
+
+namespace :db do
+  desc "create properties_db"
+  task :create_db do
+    conn = PG::Connection.open()
+    conn.exec ('CREATE DATABASE properties_db;')
+    conn.close
+  end
+
+  desc "drop properties_db"
+  task :drop_db do
+    conn = PG::Connection.open()
+    conn.exec ('DROP DATABASE properties_db;')
+    conn.close
+  end
+
+  desc "load data"
+  task :import_csv => :environment do
+    CSV.foreach("data.csv", :headers => true) do |row|
+      boro = row["BORO"]
+      block = row["BLOCK"]
+      lot = row["LOT"]
+      parcel_name = row["PARCEL_NAME"]
+      parcel_address = row["PARCEL_ADDRESS"]
+      juris = row["JURIS"]
+      jurisdiction_description = row["Jurisdiction Description"]
+      rpad = row["RPAD"]
+      rpad_description = row["RPAD_DESCRIPTION"]
+      prop_front = row["PROP_FRONT"]
+      prop_depth = row["PROP_DEPTH"]
+      prop_sqft = row["PROP_SQFT"]
+      irreg = row["IRREG"]
+      bld_front = row["BLD_FRONT"]
+      bld_depth = row["BLD_DEPTH"]
+      bld_sqft = row["BLD_SQFT"]
+      num_bld = row["NUM_BLD"]
+      floors = row["FLOORS"]
+      cd = row["CD"]
+      council_district = row["COUNCIL_DISTRICT"]
+      bbl = row["BBL"]
+      waterfront = row["WATERFRONT"]
+      urban_renewal_site = row["URBAN RENEWAL SITE"]
+      agency = row["Agency"]
+      owned_leased = row["Owned/Leased"]
+      primary_use = row["Primary Use Text"]
+
+      Property.create({
+        boro: boro,
+        block: block,
+        lot: lot,
+        parcel_name: parcel_name,
+        parcel_address: parcel_address,
+        juris: juris,
+        jurisdiction_description: jurisdiction_description,
+        rpad: rpad,
+        rpad_description: rpad_description,
+        prop_front: prop_front,
+        prop_depth: prop_depth,
+        prop_sqft: prop_sqft,
+        irreg: irreg,
+        bld_front: bld_front,
+        bld_depth: bld_depth,
+        bld_sqft: bld_sqft,
+        num_bld: num_bld,
+        floors: floors,
+        cd: cd,
+        council_district: council_district,
+        bbl: bbl,
+        waterfront: waterfront,
+        urban_renewal_site: urban_renewal_site,
+        agency: agency,
+        owned_leased: owned_leased,
+        primary_use: primary_use,
+        })
+    end
+  end
+
+end

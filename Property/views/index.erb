@@ -1,0 +1,62 @@
+<h1>PLAYGROUNDS! (CONDENSED BROOKLYN-ONLY EDITION)</h1>
+
+<table>
+  <th class="boro">boro</th>
+  <th class="block">block</th>
+  <th class="lot">lot</th>
+  <th class="parcel_name">parcel_name</th>
+  <th class="parcel_address">parcel_address</th>
+  <th class="juris">juris</th>
+  <th class="jurisdiction_description">jurisdiction_description</th>
+  <th class="rpad">rpad</th>
+  <th class="rpad_description">rpad_description</th>
+  <th class="prop_front">prop_front</th>
+  <th class="prop_depth">prop_depth</th>
+  <th class="prop_sqft">prop_sqft</th>
+  <th class="irreg">irreg</th>
+  <th class="bld_front">bld_front</th>
+  <th class="bld_depth">bld_depth</th>
+  <th class="bld_sqft">bld_sqft</th>
+  <th class="num_bld">num_bld</th>
+  <th class="floors">floors</th>
+  <th class="cd">cd</th>
+  <th class="council_district">council_district</th>
+  <th class="bbl">bbl</th>
+  <th class="waterfront">waterfront</th>
+  <th class="urban_renewal_site">urban_renewal_site</th>
+  <th class="agency">agency</th>
+  <th class="owned_leased">owned_leased</th>
+  <th class="primary_use">primary_use</th>
+
+  <% @properties.each do |property| %>
+    <tr>
+      <td class="boro"><%= property.boro %></td>
+      <td class="block"><%= property.block %></td>
+      <td class="lot"><%= property.lot %></td>
+      <td class="parcel_name"><%= property.parcel_name %></td>
+      <td class="parcel_address"><%= property.parcel_address %></td>
+      <td class="juris"><%= property.juris %></td>
+      <td class="jurisdiction_description"><%= property.jurisdiction_description %></td>
+      <td class="rpad"><%= property.rpad %></td>
+      <td class="rpad_description"><%= property.rpad_description %></td>
+      <td class="prop_front"><%= property.prop_front %></td>
+      <td class="prop_depth"><%= property.prop_depth %></td>
+      <td class="prop_sqft"><%= property.prop_sqft %></td>
+      <td class="irreg"><%= property.irreg %></td>
+      <td class="bld_front"><%= property.bld_front %></td>
+      <td class="bld_depth"><%= property.bld_depth %></td>
+      <td class="bld_sqft"><%= property.bld_sqft %></td>
+      <td class="num_bld"><%= property.num_bld %></td>
+      <td class="floors"><%= property.floors %></td>
+      <td class="cd"><%= property.cd %></td>
+      <td class="council_district"><%= property.council_district %></td>
+      <td class="bbl"><%= property.bbl %></td>
+      <td class="waterfront"><%= property.waterfront %></td>
+      <td class="urban_renewal_site"><%= property.urban_renewal_site %></td>
+      <td class="agency"><%= property.agency %></td>
+      <td class="owned_leased"><%= property.owned_leased %></td>
+      <td class="primary_use"><%= property.primary_use %></td>
+    </tr>
+  <% end %>
+</table>
+
