@@ -2,11 +2,8 @@ require 'bundler'
 Bundler.require
 require 'sinatra/activerecord/rake'
 require_relative 'connection'
-begin
-  require 'CSV'
-rescue
-  require 'csv'
-end
+require 'csv'
+
 # ROOT_DIR = Dir.pwd
 # Dir[ROOT_DIR + "/models/*.rb"].each { |file| require file }
 
